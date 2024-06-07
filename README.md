@@ -94,5 +94,3 @@ This project was set up to evaluate the frontend development skills of candidate
 Please refer to the project documentation and instructions provided during the selection process for more details.
 
 ---
-
-For any issues or questions, please contact the project maintainer at [your-email@example.com].
