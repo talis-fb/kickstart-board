@@ -7,7 +7,10 @@
       router.push(router.currentRoute.value.path);
     "
   >
-    <div class="bg-gray2" data-cy="card-detail">
+    <div
+      class="bg-gray2"
+      data-cy="card-detail"
+    >
       <div>
         <div class="mb-4 ml-9">
           <div class="inline-block">
@@ -30,9 +33,12 @@
               blurInput($event);
               cardNameInputActive = false;
             "
-          />
+          >
           <h2>
-            in list <span class="underline" data-cy="card-list-name">{{ cardListName }}</span>
+            in list <span
+              class="underline"
+              data-cy="card-list-name"
+            >{{ cardListName }}</span>
           </h2>
         </div>
         <div class="mb-4 ml-9">
@@ -41,12 +47,20 @@
             <Checkbox :card="activeCard" />
             <h2>
               {{ new Date(activeCard.deadline).toDateString() }}
-              <div v-show="activeCard.completed">COMPLETED</div>
-              <button data-cy="calendar-dropdown" @click="showDate = true">
+              <div v-show="activeCard.completed">
+                COMPLETED
+              </div>
+              <button
+                data-cy="calendar-dropdown"
+                @click="showDate = true"
+              >
                 <Downarrow class="inline-block py-2 pl-2 w-5 text-gray-800 cursor-pointer fill-current stroke-current" />
               </button>
             </h2>
-            <div v-if="showDate" class="absolute">
+            <div
+              v-if="showDate"
+              class="absolute"
+            >
               <Datepicker
                 v-model="date"
                 v-click-away="clickAwayDate"
@@ -89,7 +103,9 @@
           <div class="inline-block">
             <Description />
           </div>
-          <h1 class="inline-block mb-4 text-lg font-semibold text-black">Description</h1>
+          <h1 class="inline-block mb-4 text-lg font-semibold text-black">
+            Description
+          </h1>
           <textarea
             v-model="activeCard.description"
             class="p-3 w-full h-36 resize-none"
@@ -113,22 +129,40 @@
           <div class="inline-block">
             <Attachment />
           </div>
-          <h1 class="inline-block mb-4 text-lg font-semibold text-black">Image</h1>
-          <div v-if="activeCard.image" class="grid grid-cols-6 gap-x-4" data-cy="image-attachment">
+          <h1 class="inline-block mb-4 text-lg font-semibold text-black">
+            Image
+          </h1>
+          <div
+            v-if="activeCard.image"
+            class="grid grid-cols-6 gap-x-4"
+            data-cy="image-attachment"
+          >
             <div class="col-span-2 row-span-2">
-              <img :src="'/backend' + activeCard.image" />
+              <img :src="'/backend' + activeCard.image">
             </div>
             <div class="col-span-4 font-bold">
               {{ activeCard.image.replace(`/data/uploaded/${activeCard.id}_`, '') }}
-              <a class="block font-normal underline cursor-pointer" data-cy="image-delete" :href="'/backend' + activeCard.image" download>
+              <a
+                class="block font-normal underline cursor-pointer"
+                data-cy="image-delete"
+                :href="'/backend' + activeCard.image"
+                download
+              >
                 <Download class="inline-block mb-1 w-4" />Download
               </a>
-              <div class="block font-normal underline cursor-pointer" data-cy="image-delete" @click="patchCard(activeCard, { image: null })">
+              <div
+                class="block font-normal underline cursor-pointer"
+                data-cy="image-delete"
+                @click="patchCard(activeCard, { image: null })"
+              >
                 <Cross class="inline-block mb-1 w-4" />Delete
               </div>
             </div>
           </div>
-          <Dropzone v-else :card="activeCard" />
+          <Dropzone
+            v-else
+            :card="activeCard"
+          />
         </div>
       </div>
       <div class="grid col-span-2 gap-y-2 content-start">
@@ -141,7 +175,11 @@
             "
           />
         </div>
-        <div class="py-0.5 px-2 text-sm text-gray-600 bg-gray3 hover:bg-gray5 rounded-sm cursor-pointer" data-cy="calendar-button" @click="showDate = true">
+        <div
+          class="py-0.5 px-2 text-sm text-gray-600 bg-gray3 hover:bg-gray5 rounded-sm cursor-pointer"
+          data-cy="calendar-button"
+          @click="showDate = true"
+        >
           <Clock class="inline-block mr-2 mb-0.5 w-4" />Due date
         </div>
         <div
