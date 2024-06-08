@@ -1,5 +1,10 @@
 <template>
-  <div class="relative p-1.5 mb-32 ml-3 w-list bg-gray2 rounded shadow-md" data-cy="list" @dragenter="isDragging = true" @dragleave="isDragging = false">
+  <div
+    class="relative p-1.5 mb-32 ml-3 w-list bg-gray2 rounded shadow-md"
+    data-cy="list"
+    @dragenter="isDragging = true"
+    @dragleave="isDragging = false"
+  >
     <div class="flex mb-1">
       <input
         v-click-away="onClickAway"
@@ -16,14 +21,30 @@
           inputActive = false;
         "
         @blur="inputActive = false"
+      >
+      <ListOptions
+        :list="list"
+        @toggle-input="showCardCreate"
       />
-      <ListOptions :list="list" @toggle-input="showCardCreate" />
     </div>
-    <div data-cy="card-list" :class="isDragging ?? 'min-h-[100px]'">
-      <div v-if="loadingListCards[list.id]" class="block place-self-center text-xs text-center">
+    <div
+      data-cy="card-list"
+      :class="isDragging ?? 'min-h-[100px]'"
+    >
+      <div
+        v-if="loadingListCards[list.id]"
+        class="block place-self-center text-xs text-center"
+      >
         <LoadingIcon class="inline-block mb-1" />&nbsp;&nbsp;Loading cards ...
       </div>
-      <draggable :list="list.cards" animation="150" group="cards" ghost-class="bg-gray2" :item-key="list.name" @change="sortCards">
+      <draggable
+        :list="list.cards"
+        animation="150"
+        group="cards"
+        ghost-class="bg-gray2"
+        :item-key="list.name"
+        @change="sortCards"
+      >
         <template #item="{ element }">
           <CardItem :card="element" />
         </template>
@@ -36,7 +57,11 @@
       >
         <Plus class="inline-block w-3 h-3" />Add another card
       </div>
-      <CardCreateInput v-else :list="list" @toggle-input="showCardCreate" />
+      <CardCreateInput
+        v-else
+        :list="list"
+        @toggle-input="showCardCreate"
+      />
     </div>
   </div>
 </template>
