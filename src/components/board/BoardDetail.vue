@@ -63,6 +63,18 @@
         >
           <Star class="place-self-center m-2" />
         </div>
+        <div
+          class="inline-grid relative self-center ml-2 w-8 h-8 bg-white bg-opacity-20 hover:bg-opacity-30 rounded-sm cursor-pointer"
+          :class="[state.board.starred ? 'fill-current' : 'stroke-current text-white']"
+          data-cy="star"
+          @click="
+            state.patchBoard(state.board, {
+              starred: !state.board.starred,
+            })
+          "
+        >
+          <Search class="place-self-center m-2" />
+        </div>
         <BoardOptions :board="state.board" />
       </div>
       <draggable

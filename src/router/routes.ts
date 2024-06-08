@@ -1,4 +1,4 @@
-import Board from '../views/Board.vue';
+import BoardView from '../views/BoardView.vue';
 import BoardList from '@/components/boardList/BoardList.vue';
 import NotFound from '@/components/NotFound.vue';
 
@@ -9,7 +9,7 @@ export const routes = [
     path: '/',
   },
   {
-    component: Board,
+    component: BoardView,
     name: 'Board',
     path: '/board/:board',
   },
