@@ -93,7 +93,7 @@
 import { blurInput } from '@/utils/blurInput';
 import { ref } from 'vue';
 import { selectInput } from '@/utils/selectInput';
-import { useStore } from '@/store/store';
+import { useStore } from '@/stores/store';
 import { useRoute } from 'vue-router';
 import BoardOptions from '@/components/board/BoardOptions.vue';
 import ListCreate from '@/components/list/ListCreate.vue';
@@ -101,6 +101,7 @@ import ListItem from '@/components/list/ListItem.vue';
 import LoadingIcon from '@/assets/icons/loadingIcon.svg';
 import Star from '@/assets/icons/star.svg';
 import draggable from 'vuedraggable';
+import Search from '@/assets/icons/search.svg';
 
 const route = useRoute();
 const state = useStore();

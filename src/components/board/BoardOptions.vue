@@ -30,7 +30,7 @@
 
 <script setup lang="ts">
 import { PropType, ref } from 'vue';
-import { useStore } from '@/store/store';
+import { useStore } from '@/stores/store';
 import { useRouter } from 'vue-router';
 import Board from '@/typings/board';
 import Dots from '@/assets/icons/dots.svg';

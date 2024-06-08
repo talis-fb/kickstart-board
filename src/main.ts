@@ -1,6 +1,6 @@
 import './index.css';
 import { createApp } from 'vue';
-import { createPinia } from '@/store';
+import { createPinia } from '@/stores';
 import App from './App.vue';
 import VueClickAway from 'vue3-click-away';
 import { router } from '@/router/index';

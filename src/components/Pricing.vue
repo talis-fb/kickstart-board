@@ -69,7 +69,7 @@
   </div>
 </template>
 <script setup lang="ts">
-import { useStore } from '@/store/store';
+import { useStore } from '@/stores/store';
 import { ref } from 'vue';
 import { storeToRefs } from 'pinia';
 import emoji from 'node-emoji';

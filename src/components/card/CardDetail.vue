@@ -210,7 +210,7 @@ import '@vuepic/vue-datepicker/dist/main.css';
 import { blurInput } from '@/utils/blurInput';
 import { ref, onMounted } from 'vue';
 import { selectInput } from '@/utils/selectInput';
-import { useStore } from '@/store/store';
+import { useStore } from '@/stores/store';
 import Attachment from '@/assets/icons/attachment.svg';
 import Board from '@/assets/icons/board.svg';
 import Card from '@/typings/card';

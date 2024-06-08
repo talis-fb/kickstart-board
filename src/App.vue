@@ -4,17 +4,15 @@
   <Notification />
   <Tools v-if="state.showTools" />
   <router-view class="mt-10" />
-  <Footer />
 </template>
 
 <script setup lang="ts">
 import { useKeypress } from 'vue3-keypress';
-import { useStore } from '@/store/store';
+import { useStore } from '@/stores/store';
 import Navbar from '@/components/Navbar.vue';
 import Notification from '@/components/Notification.vue';
 import Tools from '@/components/Tools.vue';
 import Search from '@/components/Search.vue';
-import Footer from '@/components/Footer.vue';
 import axios from 'axios';
 
 const state = useStore();

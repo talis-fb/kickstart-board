@@ -50,14 +50,14 @@
 </template>
 
 <script setup lang="ts">
-import { useStore } from '@/store/store';
 import BoardCreate from '@/components/board/BoardCreate.vue';
 import BoardItem from '@/components/board/BoardItem.vue';
 import Emptylist from '@/components/boardList/Emptylist.vue';
 import LoadingError from '@/components/boardList/LoadingError.vue';
 import Loading from '@/components/Loading.vue';
+import { useBoardStore } from '@/stores';
 
-const state = useStore();
+const state = useBoardStore();
 state.getBoardList();
 </script>
 <style lang="postcss" scoped>
