@@ -67,7 +67,6 @@ const isDragging = ref(false);
 
 const { lists, loadingListCards } = storeToRefs(useStore());
 const { patchCard, patchList } = useStore();
-
 const onClickAway = () => {
   inputActive.value = false;
 };
@@ -76,9 +75,10 @@ const showCardCreate = (flag: boolean) => {
 };
 const sortCards = () => {
   // find list index of dragged card(s)
-  const listIndex = lists.value.find((l: List) => l.id === props.list.id);
+  const listItem = lists.value.find((l: List) => l.id === props.list.id);
+
   // trigget PATCH request for every car that was dragged
-  lists.value[listIndex].cards.forEach((card: Card, order: Card['order']) => {
+  listItem.cards.forEach((card: Card, order: Card['order']) => {
     patchCard(card, { listId: props.list.id, order });
   });
 };
