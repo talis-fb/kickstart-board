@@ -18,7 +18,7 @@
     <div
       class="py-1 px-1.5 mt-1 w-[fit-content] text-xs rounded-sm"
       data-cy="due-date"
-      :class="styleCardDateByState"
+      :class="stateCard"
     >
       <Clock class="inline-block w-4 h-4 fill-current" />
       <span class="ml-2">{{ new Date(card.deadline).toDateString().substring(4) }}</span>
@@ -42,23 +42,15 @@ defineEmits<{
   (e: 'clickEditCard', cardId: number): void;
 }>();
 
-const isOverdue = computed(() => !props.card.completed && moment(props.card.deadline).isBefore(new Date()));
 
-type StateComponent = 'completed' | 'overdue' | 'progress';
-const stateComponents = computed((): StateComponent => {
+type StateCard = 'completed' | 'overdue' | 'progress';
+const stateCard = computed((): StateCard => {
   if (props.card.completed) return 'completed';
   else if (isOverdue.value) return 'overdue';
   else return 'progress';
 });
 
-const styleCardDateByState = computed(
-  () =>
-    ({
-      completed: 'bg-green5 text-white',
-      overdue: 'bg-red-300 text-white',
-      progress: 'text-gray9',
-    }[stateComponents.value])
-);
+const isOverdue = computed(() => !props.card.completed && moment(props.card.deadline).isBefore(new Date()));
 </script>
 
 <style lang="postcss" scoped>
@@ -68,5 +60,13 @@ const styleCardDateByState = computed(
 
 .completed {
   @apply bg-green5 text-white;
+}
+
+.overdue {
+  @apply bg-red-300 text-white;
+}
+
+.progress {
+  @apply text-gray9;
 }
 </style>
