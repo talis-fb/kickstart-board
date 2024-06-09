@@ -119,24 +119,6 @@
               :scroll-element="scrollElement"
               class="p-3 w-full h-25 max-h-50"
             />
-            <!-- <textarea
-              v-model="activeCard.description"
-              class="p-3 w-full h-36 rounded resize-none"
-              data-cy="card-description"
-              @focus="
-                selectInput($event);
-                descriptionInputActive = true;
-              "
-              @change="patchCard(activeCard, { description: activeCard.description })"
-              @keydown.enter="
-                blurInput($event);
-                descriptionInputActive = false;
-              "
-              @keyup.esc="
-                blurInput($event);
-                descriptionInputActive = false;
-              "
-            /> -->
           </div>
         </div>
         <div class="mb-4 ml-9">
@@ -257,7 +239,6 @@ const cardListName = lists.value.find((l: List) => l.id === activeCard.value.lis
 
 const showDate = ref(false);
 const cardNameInputActive = ref(false);
-const descriptionInputActive = ref(false);
 const date = ref(new Date());
 
 const clickAwayCardName = () => {
