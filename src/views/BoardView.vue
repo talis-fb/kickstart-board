@@ -6,13 +6,17 @@
       :class="state.loadingError.show ? 'bg-white' : 'bg-blue6'"
     >
       <!-- LOADING -->
-      <BoardLoading v-if="state.loading" />
+      <BoardLoading 
+        v-if="state.loading"
+        class="grid justify-center content-center h-screen loading" />
 
       <!-- ERROR STATE -->
       <BoardError
         v-if="state.loadingError.show"
         :status="state.loadingError.status"
         :error-message="state.loadingError.message"
+        class="grid justify-center content-center h-screen"
+        data-cy="board-list-error-message"
       />
 
       <!-- BOARD DETAIL -->
@@ -27,12 +31,15 @@
           :starred="state.board.starred"
           :on-change-board-name="() => state.patchBoard(state.board, { name: state.board.name })"
           @clickOnStar="state.patchBoard(state.board, { starred: !state.board.starred })"
+          class="py-2.5"
         />
 
-        <Board />
+        <Board class="inline-block" />
 
         <div class="inline-block align-top">
-          <ListCreate :board="state.board.id" />
+          <ListCreate 
+            :board="state.board.id"
+            class="grid py-1 px-1.5 ml-3 w-list bg-gray2 rounded-sm shadow-md cursor-pointer" />
         </div>
       </div>
     </div>

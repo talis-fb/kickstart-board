@@ -4,7 +4,6 @@
     animation="150"
     group="lists"
     item-key="order"
-    class="inline-block"
     @end="state.updateListsOrder"
   >
     <template #item="{ element }">

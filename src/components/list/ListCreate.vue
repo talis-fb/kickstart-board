@@ -2,7 +2,6 @@
   <div
     v-if="createListInput"
     v-click-away="onClickAway"
-    class="grid py-1 px-1.5 ml-3 w-list bg-gray2 rounded-sm shadow-md cursor-pointer"
   >
     <input
       ref="listCreate"
