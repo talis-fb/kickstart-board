@@ -8,7 +8,7 @@
     "
   >
     <div
-      class="grid grid-cols-4 gap-1 p-5 w-11/12 max-w-7xl h-5/6 bg-gray2"
+      class="grid overflow-scroll grid-cols-4 gap-1 p-5 w-11/12 max-w-7xl h-5/6 bg-gray2"
       data-cy="card-detail"
     >
       <div class="flex flex-col col-span-3 gap-3">
@@ -21,7 +21,7 @@
               v-model="activeCard.name"
               v-click-away="clickAwayCardName"
               data-cy="card-detail-title"
-              class="p-1 w-full text-xl h-8 font-bold bg-white bg-opacity-0 focus:bg-opacity-80 rounded outline-none"
+              class="p-1 w-full h-8 text-xl font-bold bg-white bg-opacity-0 focus:bg-opacity-80 rounded outline-none"
               @focus="
                 selectInput($event);
                 cardNameInputActive = true;
@@ -112,7 +112,14 @@
             </h1>
           </div>
           <div class="flex lg:ml-9">
-            <textarea
+            <MdEditor
+              v-model="activeCard.description"
+              language="en-US"
+              code-theme="atom"
+              :scroll-element="scrollElement"
+              class="p-3 w-full h-25 max-h-50"
+            />
+            <!-- <textarea
               v-model="activeCard.description"
               class="p-3 w-full h-36 rounded resize-none"
               data-cy="card-description"
@@ -129,7 +136,7 @@
                 blurInput($event);
                 descriptionInputActive = false;
               "
-            />
+            /> -->
           </div>
         </div>
         <div class="mb-4 ml-9">
@@ -238,6 +245,10 @@ import Trash from '@/assets/icons/trash.svg';
 import moment from 'moment';
 import { storeToRefs } from 'pinia';
 import { useRouter } from 'vue-router';
+
+import { MdEditor } from 'md-editor-v3';
+import 'md-editor-v3/lib/style.css';
+const scrollElement = document.documentElement;
 
 const router = useRouter();
 const { showNotification, closeModalCardEdit, patchCard, deleteCard } = useStore();

@@ -2,6 +2,7 @@
   <div
     v-if="createListInput"
     v-click-away="onClickAway"
+    class="grid py-1 px-1.5 ml-3 w-list"
   >
     <input
       ref="listCreate"
@@ -32,11 +33,14 @@
   </div>
   <div
     v-else
-    class="p-2.5 ml-3 w-list text-sm text-gray-50 bg-white bg-opacity-20 hover:bg-opacity-30 rounded cursor-pointer flex-no-shrink"
+    class="flex py-2 px-2.5 ml-3 w-list text-sm text-gray-50 bg-white bg-opacity-20 hover:bg-opacity-30 rounded cursor-pointer flex-no-shrink"
     data-cy="create-list"
     @click="enableInput()"
   >
-    <Plus class="inline-block w-3 h-3" /> {{ !lists.length ? 'Add a list' : 'Add another list' }}
+    <Plus class="inline-block w-5 h-5" />
+    <span>
+      {{ !lists.length ? 'Add a list' : 'Add another list' }}
+    </span>
   </div>
 </template>
 
