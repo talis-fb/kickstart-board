@@ -5,7 +5,7 @@ import Card from '@/typings/card';
 import List from '@/typings/list';
 import axios, { AxiosError } from 'axios';
 
-export const getBoardDetail = async function (this: any, id: Board['id']) {
+export const getBoardData = async function (this: any, id: Board['id']) {
   const route = useRoute();
 
   this.loading = true;

@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia';
 import { createBoard } from './boards/actions/createBoard';
-import { getBoardDetail } from './boards/actions/getBoardDetail';
+import { getBoardData } from './boards/actions/getBoardData';
 import { getBoardList } from './boards/actions/getBoardList';
 import { patchCard } from './boards/actions/patchCard';
 import { uploadFile } from './actions/uploadFile';
@@ -86,7 +86,7 @@ export const useStore = defineStore({
   actions: {
     // board actions
     createBoard,
-    getBoardDetail,
+    getBoardData,
     getBoardList,
     patchBoard,
     deleteBoard,

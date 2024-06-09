@@ -1,6 +1,6 @@
-import BoardView from '../views/BoardView.vue';
-import BoardList from '@/components/boardList/BoardList.vue';
-import NotFound from '@/components/NotFound.vue';
+import BoardView from '@/views/BoardView.vue';
+import BoardList from '@/views/BoardList.vue';
+import NotFound from '@/views/NotFound.vue';
 
 export const routes = [
   {
