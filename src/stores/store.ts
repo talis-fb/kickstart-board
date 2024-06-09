@@ -95,7 +95,7 @@ export const useStore = defineStore({
     createList,
     deleteList,
     patchList,
-    sortLists: updateListsOrder,
+    updateListsOrder,
 
     // card actions
     createCard,
