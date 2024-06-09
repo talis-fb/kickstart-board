@@ -1,6 +1,6 @@
 <template>
   <div class="bg-blue6">
-    <CardDetail v-if="cardModule" />
+    <CardDetail v-if="modalEditCard.show" />
     <div
       class="grid"
       :class="state.loadingError.show ? 'bg-white' : 'bg-blue6'"
@@ -51,7 +51,7 @@ import BoardHeader from '@/components/board/BoardHeader.vue';
 import BoardError from '@/components/board/BoardError.vue';
 import ListCreate from '@/components/list/ListCreate.vue';
 
-const { cardModule } = storeToRefs(useStore());
+const { modalEditCard } = storeToRefs(useStore());
 const route = useRoute();
 const state = useStore();
 const boardId = Number(route.params.board);

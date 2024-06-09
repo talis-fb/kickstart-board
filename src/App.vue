@@ -16,7 +16,6 @@ import Search from '@/components/Search.vue';
 import axios from 'axios';
 
 const state = useStore();
-const toggleTools = state.toggleTools;
 const toggleSearch = state.toggleSearch;
 const getCookieValue = (name: string) => document.cookie.match('(^|;)\\s*' + name + '\\s*=\\s*([^;]+)')?.pop();
 
@@ -41,13 +40,13 @@ useKeypress({
     {
       keyCode: 113, // f2
       success() {
-        toggleTools(!state.showTools);
+        state.showTools = !state.showTools;
       },
     },
     {
       keyCode: 75, // k
       success() {
-        toggleSearch(!state.showSearch);
+        state.showTools = !state.showTools;
       },
       modifiers: ['metaKey'],
     },
@@ -56,6 +55,7 @@ useKeypress({
       success() {
         toggleSearch(false);
         toggleTools(false);
+        state.showTools = false;
       },
     },
   ],

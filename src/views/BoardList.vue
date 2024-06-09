@@ -56,10 +56,14 @@ import Emptylist from '@/components/boardList/Emptylist.vue';
 import LoadingError from '@/components/boardList/LoadingError.vue';
 import Loading from '@/components/Loading.vue';
 import { useBoardStore } from '@/stores';
+import { onMounted } from 'vue';
 
 const state = useBoardStore();
-state.getBoardList();
+onMounted(() => {
+  state.getBoardList();
+})
 </script>
+
 <style lang="postcss" scoped>
 .board-list {
   height: calc(100vh - 40px);

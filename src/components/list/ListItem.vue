@@ -46,7 +46,7 @@
         @change="sortCards"
       >
         <template #item="{ element }">
-          <CardItem :card="element" />
+          <CardItem :card="element" @click-edit-card="(id) => showModalCardEdit(id)" />
         </template>
       </draggable>
       <div
@@ -91,7 +91,7 @@ const inputActive = ref(false);
 const isDragging = ref(false);
 
 const { lists, loadingListCards } = storeToRefs(useStore());
-const { patchCard, patchList } = useStore();
+const { patchCard, patchList, showModalCardEdit } = useStore();
 const onClickAway = () => {
   inputActive.value = false;
 };

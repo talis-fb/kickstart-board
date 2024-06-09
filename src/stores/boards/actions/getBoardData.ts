@@ -36,7 +36,7 @@ export const getBoardData = async function (this: any, id: Board['id']) {
 
     const qs: any = route.query?.card;
     if (qs !== undefined) {
-      this.showCardModule(qs, true);
+      this.showModalCardEdit(qs, true);
     }
     this.loading = false;
   }

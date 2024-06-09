@@ -10,12 +10,12 @@ import { createCard } from './actions/createCard';
 import { createList } from './actions/createList';
 import { updateListsOrder } from './actions/sortLists';
 import { deleteBoard } from './actions/deleteBoard';
-import { showCardModule } from './actions/showCardModule';
+import { showModalCardEdit } from './actions/showModalCardEdit';
 import { resetBoards } from './actions/resetBoards';
 import { resetLists } from './actions/resetLists';
 import { resetCards } from './actions/resetCards';
 import { patchBoard } from './actions/patchBoard';
-import { toggleSearch } from './actions/toggleSearch';
+import { toggleSearch } from '../flags/toggleSearch';
 import { searchCard } from './actions/searchCard';
 import Board from '@/typings/board';
 import List from '@/typings/list';
@@ -35,7 +35,6 @@ export const useBoardStore = defineStore('boards', {
         tooLong: false,
       },
       createListInput: true,
-      cardModule: false,
       activeCard: {},
       notification: {
         error: false,
@@ -45,6 +44,9 @@ export const useBoardStore = defineStore('boards', {
       boardList: {
         all: [],
       },
+      modalEditCard: {
+        show: false,
+      }
     };
   },
   actions: {
@@ -65,7 +67,6 @@ export const useBoardStore = defineStore('boards', {
     createCard,
     patchCard,
     deleteCard,
-    showCardModule,
 
     // search functionality
     toggleSearch,

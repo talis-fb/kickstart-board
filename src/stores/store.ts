@@ -16,18 +16,17 @@ import { login } from './user/actions/login';
 import { user } from './user/actions/user';
 import { reset } from './user/actions/reset';
 import { showNotification } from './notifications/showNotification';
-import { showCardModule } from './boards/actions/showCardModule';
+import { showModalCardEdit } from './boards/actions/showModalCardEdit';
+import { closeModalCardEdit } from './boards/actions/closeModalCardEdit';
 import { resetBoards } from './boards/actions/resetBoards';
 import { resetLists } from './boards/actions/resetLists';
 import { resetCards } from './boards/actions/resetCards';
 import { resetUsers } from './user/actions/resetUsers';
 import { patchBoard } from './boards/actions/patchBoard';
-import { toggleTools } from './tools/toggleTools';
-import { toggleSearch } from './boards/actions/toggleSearch';
+import { toggleSearch } from './flags/toggleSearch';
 import { searchCard } from './boards/actions/searchCard';
 import { oauthLogin } from './user/actions/oauthLogin';
 import { oauthSignup } from './user/actions/oauthSignup';
-import { getLocation } from './pricing/actions/getLocation';
 import Board from '@/typings/board';
 
 export const useStore = defineStore({
@@ -71,12 +70,8 @@ export const useStore = defineStore({
         email: '',
         password: '',
       },
-      pricing: {
-        activePlan: 2,
-        location: 'us',
-        currency: 'USD',
-        discountEligible: false,
-        discountAmount: 0,
+      modalEditCard: {
+        show: false,
       },
       showTools: false,
       showSearch: false,
@@ -112,11 +107,8 @@ export const useStore = defineStore({
 
     // other actions
     showNotification,
-    showCardModule,
-    getLocation,
-
-    // api tools
-    toggleTools,
+    showModalCardEdit,
+    closeModalCardEdit,
 
     // search functionality
     toggleSearch,
