@@ -18,7 +18,7 @@
     <div
       class="py-1 px-1.5 mt-1 w-[fit-content] text-xs rounded-sm"
       data-cy="due-date"
-      :class="card.completed ? 'completed' : 'text-gray9'"
+      :class="styleCardDateByState"
     >
       <Clock class="inline-block w-4 h-4 fill-current" />
       <span class="ml-2">{{ new Date(card.deadline).toDateString().substring(4) }}</span>
@@ -27,23 +27,38 @@
 </template>
 
 <script setup lang="ts">
-import { PropType } from 'vue';
+import { computed } from 'vue';
 import Card from '@/typings/card';
 import Checkbox from '@/components/Checkbox.vue';
 import Clock from '@/assets/icons/clock.svg';
 import Pen from '@/assets/icons/pen.svg';
+import moment from 'moment';
 
-defineProps({
-  card: {
-    default: null,
-    type: Object as PropType<Card>,
-  },
-});
+const props = defineProps<{
+  card: Card;
+}>();
 
-// const { showCardModule } = useStore();
 defineEmits<{
   (e: 'clickEditCard', cardId: number): void;
 }>();
+
+const isOverdue = computed(() => !props.card.completed && moment(props.card.deadline).isBefore(new Date()));
+
+type StateComponent = 'completed' | 'overdue' | 'progress';
+const stateComponents = computed((): StateComponent => {
+  if (props.card.completed) return 'completed';
+  else if (isOverdue.value) return 'overdue';
+  else return 'progress';
+});
+
+const styleCardDateByState = computed(
+  () =>
+    ({
+      completed: 'bg-green5 text-white',
+      overdue: 'bg-red-300 text-white',
+      progress: 'text-gray9',
+    }[stateComponents.value])
+);
 </script>
 
 <style lang="postcss" scoped>
