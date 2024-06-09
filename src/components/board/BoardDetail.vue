@@ -6,13 +6,11 @@
     <!-- LOADING -->
     <BoardLoading v-if="state.loading" />
 
-
     <!-- ERROR STATE -->
     <BoardError 
       v-if="state.loadingError.show" 
       :status="state.loadingError.status" 
       :error-message="state.loadingError.message" />
-
 
     <!-- BOARD DETAIL -->
     <div
@@ -32,25 +30,8 @@
       )"
       />
 
-      <!-- <BoardHeader /> -->
+      <Board />
 
-      <draggable
-        v-model="state.lists"
-        animation="150"
-        group="lists"
-        item-key="order"
-        class="inline-block"
-        @end="state.updateListsOrder"
-      >
-        <template #item="{ element }">
-          <div
-            class="inline-block align-top"
-            data-cy="list-placeholder"
-          >
-            <ListItem :list="element" />
-          </div>
-        </template>
-      </draggable>
       <div class="inline-block align-top">
         <ListCreate :board="state.board.id" />
       </div>
@@ -59,31 +40,19 @@
 </template>
 
 <script setup lang="ts">
-import { blurInput } from '@/utils/blurInput';
-import { ref } from 'vue';
-import { selectInput } from '@/utils/selectInput';
 import { useStore } from '@/stores/store';
 import { useRoute } from 'vue-router';
-import BoardOptions from '@/components/board/BoardOptions.vue';
 import BoardLoading from '@/components/board/BoardLoading.vue';
+import Board from '@/components/board/Board.vue';
 import BoardHeader from '@/components/board/BoardHeader.vue';
 import BoardError from '@/components/board/BoardError.vue';
 import ListCreate from '@/components/list/ListCreate.vue';
-import ListItem from '@/components/list/ListItem.vue';
-import LoadingIcon from '@/assets/icons/loadingIcon.svg';
-import Star from '@/assets/icons/star.svg';
-import draggable from 'vuedraggable';
-import Search from '@/assets/icons/search.svg';
 
 
 const route = useRoute();
 const state = useStore();
-const inputActive = ref(false);
 const boardId = Number(route.params.board);
 state.getBoardDetail(boardId);
-const onClickAway = () => {
-  inputActive.value = false;
-};
 </script>
 
 <style lang="postcss" scoped>
