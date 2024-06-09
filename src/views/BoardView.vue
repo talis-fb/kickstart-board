@@ -41,7 +41,7 @@
         <div class="inline-block align-top">
           <ListCreate
             :board="state.board.id"
-            class="grid py-1 px-1.5 ml-3 w-list bg-gray2 rounded-sm shadow-md cursor-pointer"
+            class="bg-gray2 rounded-sm shadow-md cursor-pointer"
           />
         </div>
       </div>
