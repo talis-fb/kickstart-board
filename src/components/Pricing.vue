@@ -69,15 +69,28 @@
   </div>
 </template>
 <script setup lang="ts">
-import { useStore } from '@/store/store';
-import { ref } from 'vue';
-import { storeToRefs } from 'pinia';
+import { onMounted, reactive, ref } from 'vue';
 import emoji from 'node-emoji';
 import * as L from 'leaflet';
 import RoundCheckbox from '@/assets/icons/roundCheckbox.svg';
-const { pricing } = storeToRefs(useStore());
-const { getLocation } = useStore();
-getLocation();
+import axios from 'axios';
+
+const pricing = reactive({
+  activePlan: 2,
+  location: 'us',
+  currency: 'USD',
+  discountEligible: false,
+  discountAmount: 0,
+});
+
+onMounted(() => {
+  axios.get('/api/location').then(({ data }) => {
+    pricing.location = data.location;
+    pricing.currency = data.currency;
+    pricing.discountEligible = data.discountEligible;
+    pricing.discountAmount = data.discountAmount;
+  });
+});
 
 const geolocation = () => {
   if (navigator.geolocation) {

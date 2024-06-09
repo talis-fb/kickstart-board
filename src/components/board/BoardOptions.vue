@@ -1,8 +1,8 @@
 <template>
-  <div class="inline-block relative">
+  <div>
     <button
       data-cy="board-options"
-      class="inline-grid self-center ml-2 w-8 h-8 text-white bg-white bg-opacity-20 hover:bg-opacity-30 rounded-sm cursor-pointer"
+      class="inline-grid self-center w-8 h-8 text-white bg-white bg-opacity-20 hover:bg-opacity-30 rounded-sm cursor-pointer"
       @click="showDropdown()"
     >
       <Dots class="place-self-center m-2" />
@@ -30,7 +30,7 @@
 
 <script setup lang="ts">
 import { PropType, ref } from 'vue';
-import { useStore } from '@/store/store';
+import { useStore } from '@/stores/store';
 import { useRouter } from 'vue-router';
 import Board from '@/typings/board';
 import Dots from '@/assets/icons/dots.svg';

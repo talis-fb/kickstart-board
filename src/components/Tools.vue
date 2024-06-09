@@ -45,7 +45,7 @@
 </template>
 
 <script setup lang="ts">
-import { useStore } from '@/store/store';
+import { useStore } from '@/stores/store';
 import { useRouter } from 'vue-router';
 
 const { reset, resetBoards, resetLists, resetCards, resetUsers } = useStore();

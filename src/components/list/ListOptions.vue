@@ -41,7 +41,7 @@ import List from '@/typings/list';
 import Dots from '@/assets/icons/dots.svg';
 import Dropdown from '@/components/common/Dropdown.vue';
 import DropdownItem from '@/components/common/DropdownItem.vue';
-import { useStore } from '@/store/store';
+import { useStore } from '@/stores/store';
 const { deleteList } = useStore();
 
 defineProps({

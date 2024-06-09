@@ -2,7 +2,7 @@
   <div
     data-cy="card"
     class="grid relative p-2 my-1.5 w-full bg-white hover:bg-gray1 rounded border border-gray1 border-solid drop-shadow-sm cursor-pointer card"
-    @click="showCardModule(card.id, true)"
+    @click="$emit('clickEditCard', card.id)"
   >
     <div class="flex px-1.5 pl-0.5">
       <Checkbox :card="card" />
@@ -28,12 +28,10 @@
 
 <script setup lang="ts">
 import { PropType } from 'vue';
-import { useStore } from '@/store/store';
 import Card from '@/typings/card';
 import Checkbox from '@/components/Checkbox.vue';
 import Clock from '@/assets/icons/clock.svg';
 import Pen from '@/assets/icons/pen.svg';
-import moment from 'moment';
 
 defineProps({
   card: {
@@ -42,7 +40,10 @@ defineProps({
   },
 });
 
-const { showCardModule } = useStore();
+// const { showCardModule } = useStore();
+defineEmits<{
+  (e: 'clickEditCard', cardId: number): void;
+}>();
 </script>
 
 <style lang="postcss" scoped>

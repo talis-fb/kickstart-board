@@ -34,7 +34,7 @@
 
 <script setup lang="ts">
 import { PropType, ref, onMounted } from 'vue';
-import { useStore } from '@/store/store';
+import { useStore } from '@/stores/store';
 import Cross from '@/assets/icons/cross.svg';
 import List from '@/typings/list';
 import SaveButton from '@/components/SaveButton.vue';

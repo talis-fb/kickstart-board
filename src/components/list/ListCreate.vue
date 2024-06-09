@@ -2,7 +2,6 @@
   <div
     v-if="createListInput"
     v-click-away="onClickAway"
-    class="grid py-1 px-1.5 ml-3 w-list bg-gray2 rounded-sm shadow-md cursor-pointer"
   >
     <input
       ref="listCreate"
@@ -43,7 +42,7 @@
 
 <script setup lang="ts">
 import { PropType, ref, nextTick } from 'vue';
-import { useStore } from '@/store/store';
+import { useStore } from '@/stores/store';
 import Board from '@/typings/board';
 import Cross from '@/assets/icons/cross.svg';
 import Plus from '@/assets/icons/plus.svg';

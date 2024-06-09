@@ -35,7 +35,7 @@
 
 <script setup lang="ts">
 import { onMounted, ref } from 'vue';
-import { useStore } from '@/store/store';
+import { useStore } from '@/stores/store';
 import { storeToRefs } from 'pinia';
 
 const { searchCard, toggleSearch } = useStore();

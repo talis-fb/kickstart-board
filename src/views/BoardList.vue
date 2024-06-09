@@ -50,16 +50,20 @@
 </template>
 
 <script setup lang="ts">
-import { useStore } from '@/store/store';
 import BoardCreate from '@/components/board/BoardCreate.vue';
 import BoardItem from '@/components/board/BoardItem.vue';
 import Emptylist from '@/components/boardList/Emptylist.vue';
 import LoadingError from '@/components/boardList/LoadingError.vue';
 import Loading from '@/components/Loading.vue';
+import { useStore } from '@/stores';
+import { onMounted } from 'vue';
 
 const state = useStore();
-state.getBoardList();
+onMounted(() => {
+  state.getBoardList();
+});
 </script>
+
 <style lang="postcss" scoped>
 .board-list {
   height: calc(100vh - 40px);

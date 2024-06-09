@@ -3,7 +3,7 @@
     class="flex fixed top-0 left-0 z-40 justify-center items-center w-full h-full bg-backdrop"
     data-cy="card-detail-backdrop"
     @click.self="
-      showCardModule(activeCard.id, false);
+      closeModalCardEdit(activeCard.id);
       router.push(router.currentRoute.value.path);
     "
   >
@@ -14,7 +14,7 @@
       <div>
         <div class="mb-4 ml-9">
           <div class="inline-block">
-            <Board />
+            <BoardIcon />
           </div>
           <input
             v-model="activeCard.name"
@@ -170,7 +170,7 @@
           <Cross
             class="w-6 h-6 text-gray-600 fill-current"
             @click="
-              showCardModule(activeCard.id, false);
+              closeModalCardEdit(activeCard.id);
               router.push(router.currentRoute.value.path);
             "
           />
@@ -210,9 +210,9 @@ import '@vuepic/vue-datepicker/dist/main.css';
 import { blurInput } from '@/utils/blurInput';
 import { ref, onMounted } from 'vue';
 import { selectInput } from '@/utils/selectInput';
-import { useStore } from '@/store/store';
+import { useStore } from '@/stores/store';
 import Attachment from '@/assets/icons/attachment.svg';
-import Board from '@/assets/icons/board.svg';
+import BoardIcon from '@/assets/icons/board.svg';
 import Card from '@/typings/card';
 import Checkbox from '@/components/Checkbox.vue';
 import Clock from '@/assets/icons/clock.svg';
@@ -229,7 +229,7 @@ import { storeToRefs } from 'pinia';
 import { useRouter } from 'vue-router';
 
 const router = useRouter();
-const { showNotification, showCardModule, patchCard, deleteCard } = useStore();
+const { showNotification, closeModalCardEdit, patchCard, deleteCard } = useStore();
 const { lists, activeCard } = storeToRefs(useStore());
 const cardListName = lists.value.find((l: List) => l.id === activeCard.value.listId)!['name'];
 

@@ -46,7 +46,10 @@
         @change="sortCards"
       >
         <template #item="{ element }">
-          <CardItem :card="element" />
+          <CardItem
+            :card="element"
+            @click-edit-card="(id) => showModalCardEdit(id)"
+          />
         </template>
       </draggable>
       <div
@@ -71,7 +74,7 @@ import { ref } from 'vue';
 import { blurInput } from '@/utils/blurInput';
 import { inputValue } from '@/utils/inputValue';
 import { selectInput } from '@/utils/selectInput';
-import { useStore } from '@/store/store';
+import { useStore } from '@/stores/store';
 import Card from '@/typings/card';
 import CardCreateInput from '@/components/card/CardCreateInput.vue';
 import CardItem from '@/components/card/CardItem.vue';
@@ -91,7 +94,7 @@ const inputActive = ref(false);
 const isDragging = ref(false);
 
 const { lists, loadingListCards } = storeToRefs(useStore());
-const { patchCard, patchList } = useStore();
+const { patchCard, patchList, showModalCardEdit } = useStore();
 const onClickAway = () => {
   inputActive.value = false;
 };
