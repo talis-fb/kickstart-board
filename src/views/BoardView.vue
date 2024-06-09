@@ -58,7 +58,7 @@ const boardId = Number(route.params.board);
 
 onMounted(() => {
   state.getBoardData(boardId);
-})
+});
 </script>
 
 <style lang="postcss" scoped>

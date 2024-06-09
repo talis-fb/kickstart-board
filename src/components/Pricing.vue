@@ -81,7 +81,7 @@ const pricing = reactive({
   currency: 'USD',
   discountEligible: false,
   discountAmount: 0,
-})
+});
 
 onMounted(() => {
   axios.get('/api/location').then(({ data }) => {
@@ -90,7 +90,7 @@ onMounted(() => {
     pricing.discountEligible = data.discountEligible;
     pricing.discountAmount = data.discountAmount;
   });
-})
+});
 
 const geolocation = () => {
   if (navigator.geolocation) {

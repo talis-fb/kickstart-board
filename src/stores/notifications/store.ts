@@ -16,4 +16,3 @@ export const useStore = defineStore({
     showNotification,
   },
 });
-

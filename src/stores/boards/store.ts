@@ -46,7 +46,7 @@ export const useBoardStore = defineStore('boards', {
       },
       modalEditCard: {
         show: false,
-      }
+      },
     };
   },
   actions: {

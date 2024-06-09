@@ -61,7 +61,7 @@ import { onMounted } from 'vue';
 const state = useStore();
 onMounted(() => {
   state.getBoardList();
-})
+});
 </script>
 
 <style lang="postcss" scoped>

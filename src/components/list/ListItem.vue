@@ -46,7 +46,10 @@
         @change="sortCards"
       >
         <template #item="{ element }">
-          <CardItem :card="element" @click-edit-card="(id) => showModalCardEdit(id)" />
+          <CardItem
+            :card="element"
+            @click-edit-card="(id) => showModalCardEdit(id)"
+          />
         </template>
       </draggable>
       <div

@@ -42,9 +42,8 @@ defineProps({
 
 // const { showCardModule } = useStore();
 defineEmits<{
-  (e: 'clickEditCard', cardId: number): void
+  (e: 'clickEditCard', cardId: number): void;
 }>();
-
 </script>
 
 <style lang="postcss" scoped>

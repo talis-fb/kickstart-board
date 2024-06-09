@@ -49,7 +49,7 @@ const emit = defineEmits(['update:boardName', 'clickOnStar']);
 const inputBoardName = ref(props.boardName);
 watch(inputBoardName, () => {
   emit('update:boardName', inputBoardName.value);
-})
+});
 </script>
 
 <style lang="postcss" scoped>
