@@ -21,7 +21,7 @@
               v-model="activeCard.name"
               v-click-away="clickAwayCardName"
               data-cy="card-detail-title"
-              class="p-1 w-full h-8 font-bold bg-white bg-opacity-0 focus:bg-opacity-80 rounded outline-none"
+              class="p-1 w-full text-xl h-8 font-bold bg-white bg-opacity-0 focus:bg-opacity-80 rounded outline-none"
               @focus="
                 selectInput($event);
                 cardNameInputActive = true;
