@@ -55,10 +55,10 @@ import BoardItem from '@/components/board/BoardItem.vue';
 import Emptylist from '@/components/boardList/Emptylist.vue';
 import LoadingError from '@/components/boardList/LoadingError.vue';
 import Loading from '@/components/Loading.vue';
-import { useBoardStore } from '@/stores';
+import { useStore } from '@/stores';
 import { onMounted } from 'vue';
 
-const state = useBoardStore();
+const state = useStore();
 onMounted(() => {
   state.getBoardList();
 })

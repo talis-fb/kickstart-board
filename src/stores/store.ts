@@ -3,7 +3,7 @@ import { createBoard } from './boards/actions/createBoard';
 import { getBoardData } from './boards/actions/getBoardData';
 import { getBoardList } from './boards/actions/getBoardList';
 import { patchCard } from './boards/actions/patchCard';
-import { uploadFile } from './actions/uploadFile';
+import { uploadFile } from './boards/actions/uploadFile';
 import { deleteCard } from './boards/actions/deleteCard';
 import { deleteList } from './boards/actions/deleteList';
 import { patchList } from './boards/actions/patchList';

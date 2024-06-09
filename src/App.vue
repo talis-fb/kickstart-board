@@ -7,57 +7,16 @@
 </template>
 
 <script setup lang="ts">
-import { useKeypress } from 'vue3-keypress';
 import { useStore } from '@/stores/store';
 import Navbar from '@/components/Navbar.vue';
 import Notification from '@/components/Notification.vue';
 import Tools from '@/components/Tools.vue';
 import Search from '@/components/Search.vue';
-import axios from 'axios';
+import { authTokenValidationMiddleware } from '@/middlewares/authToken';
+import { shortcutSetupMiddleware } from '@/middlewares/shortcuts';
 
 const state = useStore();
-const toggleSearch = state.toggleSearch;
-const getCookieValue = (name: string) => document.cookie.match('(^|;)\\s*' + name + '\\s*=\\s*([^;]+)')?.pop();
 
-const authToken = getCookieValue('auth_token');
-const authTokenValid = authToken?.split('.')[1];
-
-if (authToken && !authTokenValid) {
-  state.showNotification('Invalid authorization', true);
-  document.cookie = 'auth_token=;expires=Thu, 01 Jan 1970 00:00:00 GMT';
-}
-
-if (authToken && authTokenValid) {
-  axios.defaults.headers.common['Authorization'] = `Bearer ${authToken}`;
-  const userData = window.atob(authTokenValid);
-  const userId = JSON.parse(userData).sub;
-  state.user(userId);
-}
-
-useKeypress({
-  keyEvent: 'keydown',
-  keyBinds: [
-    {
-      keyCode: 113, // f2
-      success() {
-        state.showTools = !state.showTools;
-      },
-    },
-    {
-      keyCode: 75, // k
-      success() {
-        state.showTools = !state.showTools;
-      },
-      modifiers: ['metaKey'],
-    },
-    {
-      keyCode: 27, // esc
-      success() {
-        toggleSearch(false);
-        toggleTools(false);
-        state.showTools = false;
-      },
-    },
-  ],
-});
+authTokenValidationMiddleware();
+shortcutSetupMiddleware();
 </script>
