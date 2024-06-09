@@ -42,7 +42,6 @@ defineEmits<{
   (e: 'clickEditCard', cardId: number): void;
 }>();
 
-
 type StateCard = 'completed' | 'overdue' | 'progress';
 const stateCard = computed((): StateCard => {
   if (props.card.completed) return 'completed';
