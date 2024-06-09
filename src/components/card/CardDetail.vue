@@ -114,10 +114,13 @@
           <div class="flex lg:ml-9">
             <MdEditor
               v-model="activeCard.description"
+              :editorId="mdEditorId" 
               language="en-US"
               code-theme="atom"
-              :scroll-element="scrollElement"
               class="p-3 w-full h-25 max-h-50"
+              @on-save="saveMdEditor"
+              @on-blur="saveMdEditor"
+              :scroll-element="scrollElement"
             />
           </div>
         </div>
@@ -228,10 +231,6 @@ import moment from 'moment';
 import { storeToRefs } from 'pinia';
 import { useRouter } from 'vue-router';
 
-import { MdEditor } from 'md-editor-v3';
-import 'md-editor-v3/lib/style.css';
-const scrollElement = document.documentElement;
-
 const router = useRouter();
 const { showNotification, closeModalCardEdit, patchCard, deleteCard } = useStore();
 const { lists, activeCard } = storeToRefs(useStore());
@@ -264,4 +263,15 @@ const copyProperties = (content: Card) => {
 onMounted(() => {
   router.push(`${router.currentRoute.value.path}?card=${activeCard.value.id}`);
 });
+
+import { MdEditor } from 'md-editor-v3';
+import 'md-editor-v3/lib/style.css';
+
+const mdEditorId = ref('mdEditor');
+const scrollElement = document.documentElement;
+function saveMdEditor() {
+  if (activeCard.value) {
+    patchCard(activeCard.value, { description: activeCard.value.description })
+  }
+}
 </script>
