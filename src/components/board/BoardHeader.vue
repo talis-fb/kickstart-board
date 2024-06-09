@@ -1,8 +1,8 @@
 <template>
-  <div>
-    <div class="inline-block relative py-1.5 mr-0 ml-3 h-8">
-      <div class="inline-block invisible px-3 font-bold">
-        {{ boardName }}
+  <div class="flex gap-2 justify-start ml-2">
+    <div class="relative py-1.5 h-8">
+      <div class="invisible px-3">
+        {{ inputBoardName }}
       </div>
 
       <input
@@ -18,37 +18,23 @@
       >
     </div>
     <div
-      class="inline-grid relative self-center ml-2 w-8 h-8 bg-white bg-opacity-20 hover:bg-opacity-30 rounded-sm cursor-pointer"
+      class="relative self-center w-8 h-8 bg-white bg-opacity-20 hover:bg-opacity-30 rounded-sm cursor-pointer"
       :class="[starred ? 'fill-current text-yellow-300' : 'stroke-current text-white']"
       data-cy="star"
       @click="$emit('clickOnStar')"
     >
       <StarIcon class="place-self-center m-2" />
     </div>
-    
-    <BoardOptions :board="board" class="inline-grid relative h-8 w-8 ml-2" />
 
-    <SearchCards 
-      class="inline-grid relative h-8 w-60 ml-2 bg-white bg-opacity-20 hover:bg-opacity-30" />
+    <BoardOptions
+      :board="board"
+      class="inline-grid relative w-8 h-8"
+    />
 
-
-    <div class="relative inline-grid h-8">
-      <div class="inline-block invisible font-bold">
-        <SearchIcon />
-      </div>
-
-      <input
-        v-model="searchCards"
-        class="text-white bg-white bg-opacity-20 hover:bg-opacity-30 board-title"
-        placeholder="Search cards in list.."
-        data-cy="board-title"
-        autocomplete="off"
-        name="board-title"
-        @keyup.enter="blurInput($event)"
-        @keyup.esc="blurInput($event)"
-      >
-    </div>
-
+    <SearchCards
+      v-model:input="inputSearchCards"
+      class="inline-grid relative w-60 h-8"
+    />
   </div>
 </template>
 
@@ -60,24 +46,27 @@ import BoardOptions from '@/components/board/BoardOptions.vue';
 import StarIcon from '@/assets/icons/star.svg';
 import { ref, watch } from 'vue';
 import SearchCards from './SearchCards.vue';
-import SearchIcon from '@/assets/icons/search.svg';
 
 const props = defineProps<{
   boardName: string;
+  searchCards: string;
   board: Board;
   starred: boolean;
   onChangeBoardName: () => void;
 }>();
 
-const emit = defineEmits(['update:boardName', 'clickOnStar']);
+const emit = defineEmits(['update:boardName', 'clickOnStar', 'update:searchCards']);
 
 const inputBoardName = ref(props.boardName);
 watch(inputBoardName, () => {
   emit('update:boardName', inputBoardName.value);
 });
 
-
-const searchCards = ref('');
+const inputSearchCards = ref('');
+watch(inputSearchCards, () => {
+  console.log(inputSearchCards.value);
+  emit('update:searchCards', inputSearchCards.value);
+});
 </script>
 
 <style lang="postcss" scoped>

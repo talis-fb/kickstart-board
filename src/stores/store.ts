@@ -28,6 +28,9 @@ import { searchCard } from './boards/actions/searchCard';
 import { oauthLogin } from './user/actions/oauthLogin';
 import { oauthSignup } from './user/actions/oauthSignup';
 import Board from '@/typings/board';
+import FilterCard from '@/typings/filter-card';
+import List from '@/typings/list';
+import Card from '@/typings/card';
 
 export const useStore = defineStore({
   id: 'store',
@@ -35,7 +38,8 @@ export const useStore = defineStore({
     return {
       board: {},
       redirectBoardId: 0,
-      lists: [],
+      lists: [] as List[],
+      filtersCards: [] as FilterCard[],
       loading: true,
       loadingListCards: {},
       loadingError: {
@@ -122,6 +126,24 @@ export const useStore = defineStore({
     resetUsers,
   },
   getters: {
+    getFilteredLists: (state): List[] => {
+      const boardLists = state.lists as List[];
+      const filtersCards = state.filtersCards as FilterCard[];
+
+      if (boardLists.length === 0 || filtersCards.length === 0) {
+        return state.lists;
+      }
+
+      return boardLists.map((boardList) => ({
+        ...boardList,
+        cards: boardList.cards.filter((card) => {
+          return filtersCards.every(({ fieldFilter, value }) => {
+            const cardFieldToCheck = String(card[fieldFilter]);
+            return cardFieldToCheck.includes(value);
+          });
+        }),
+      }));
+    },
     starred: (state): Board[] => {
       return state.boardList.all?.filter((board: Board) => board.starred === true);
     },

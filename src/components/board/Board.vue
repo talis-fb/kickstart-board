@@ -1,6 +1,6 @@
 <template>
   <draggable
-    v-model="state.lists"
+    v-model="state.getFilteredLists"
     animation="150"
     group="lists"
     item-key="order"
