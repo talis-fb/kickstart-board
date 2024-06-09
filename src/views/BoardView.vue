@@ -6,9 +6,10 @@
       :class="state.loadingError.show ? 'bg-white' : 'bg-blue6'"
     >
       <!-- LOADING -->
-      <BoardLoading 
+      <BoardLoading
         v-if="state.loading"
-        class="grid justify-center content-center h-screen loading" />
+        class="grid justify-center content-center h-screen loading"
+      />
 
       <!-- ERROR STATE -->
       <BoardError
@@ -27,19 +28,21 @@
       >
         <BoardHeader
           v-model:board-name="state.board.name"
+          v-model:search-cards="searchCards"
           :board="state.board"
           :starred="state.board.starred"
           :on-change-board-name="() => state.patchBoard(state.board, { name: state.board.name })"
-          @clickOnStar="state.patchBoard(state.board, { starred: !state.board.starred })"
           class="py-2.5"
+          @clickOnStar="state.patchBoard(state.board, { starred: !state.board.starred })"
         />
 
         <Board class="inline-block" />
 
         <div class="inline-block align-top">
-          <ListCreate 
+          <ListCreate
             :board="state.board.id"
-            class="grid py-1 px-1.5 ml-3 w-list bg-gray2 rounded-sm shadow-md cursor-pointer" />
+            class="grid py-1 px-1.5 ml-3 w-list bg-gray2 rounded-sm shadow-md cursor-pointer"
+          />
         </div>
       </div>
     </div>
@@ -47,7 +50,7 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted } from 'vue';
+import { onMounted, ref, watch } from 'vue';
 import { useRoute } from 'vue-router';
 import { storeToRefs } from 'pinia';
 import { useStore } from '@/stores/store';
@@ -62,6 +65,21 @@ const { modalEditCard } = storeToRefs(useStore());
 const route = useRoute();
 const state = useStore();
 const boardId = Number(route.params.board);
+
+const searchCards = ref('');
+watch(searchCards, (value) => {
+  if (value) {
+    state.filtersCards = [
+      {
+        fieldFilter: 'name',
+        value: searchCards.value,
+      },
+    ];
+  }
+ else {
+    state.filtersCards = [];
+  }
+});
 
 onMounted(() => {
   state.getBoardData(boardId);
