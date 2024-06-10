@@ -3,7 +3,7 @@
     class="w-full h-40 border-4 border-gray-400 border-dashed"
     data-cy="upload-image"
     :class="isDragActive && 'border-gray-800'"
-    accept="image/png, image/gif, image/jpeg"
+    accept="image/*,.pdf"
     @dragenter.prevent="dragActive"
     @dragleave.prevent="dragInactive"
     @dragover.prevent
@@ -30,7 +30,7 @@
       id="dropzoneFile"
       type="file"
       class="hidden"
-      accept="image/png, image/jpeg"
+      accept="image/*,.pdf"
       @input="upload"
     >
   </div>

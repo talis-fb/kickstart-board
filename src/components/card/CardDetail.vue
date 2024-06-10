@@ -135,19 +135,19 @@
           </div>
           <div class="lg:ml-9">
             <div
-              v-if="activeCard.image"
+              v-if="activeCard.file"
               class="grid grid-cols-6 gap-x-4"
-              data-cy="image-attachment"
+              data-cy="file-attachment"
             >
               <div class="col-span-2 row-span-2">
-                <img :src="'/backend' + activeCard.image">
+                <img :src="'/api/data/' + activeCard.file">
               </div>
               <div class="col-span-4 font-bold">
-                {{ activeCard.image.replace(`/data/uploaded/${activeCard.id}_`, '') }}
+                {{ activeCard.file.replace(`/api/data/${activeCard.id}_`, '') }}
                 <a
                   class="block font-normal underline cursor-pointer"
                   data-cy="image-delete"
-                  :href="'/backend' + activeCard.image"
+                  :href="'/api/data/' + activeCard.file"
                   download
                 >
                   <Download class="inline-block mb-1 w-4" />Download
@@ -155,7 +155,7 @@
                 <div
                   class="block font-normal underline cursor-pointer"
                   data-cy="image-delete"
-                  @click="patchCard(activeCard, { image: null })"
+                  @click="patchCard(activeCard, { file: null })"
                 >
                   <Cross class="inline-block mb-1 w-4" />Delete
                 </div>
@@ -234,7 +234,7 @@ import { useRouter } from 'vue-router';
 const router = useRouter();
 const { showNotification, closeModalCardEdit, patchCard, deleteCard } = useStore();
 const { lists, activeCard } = storeToRefs(useStore());
-const cardListName = lists.value.find((l: List) => l.id === activeCard.value.listId)!['name'];
+const cardListName = lists.value.find(list => list.id === activeCard.value.listId)!['name'];
 
 const showDate = ref(false);
 const cardNameInputActive = ref(false);
