@@ -1,7 +1,6 @@
 const sendmail = require('sendmail')();
 const path = require('path'); // used for file path
 const fs = require('fs-extra');
-const socket = require('socket.io-client')('http://localhost:3001');
 
 module.exports = (req, res, next) => {
   const {
@@ -11,7 +10,9 @@ module.exports = (req, res, next) => {
 
   // prevent from caching database.json file
   // this is different from nocache(), which prevents 304 status codes
-  db.assign(require('import-fresh')('./backend/data/database.json')).write();
+  const file = require('import-fresh')('./data/database.json');
+  console.log('file', file);
+  db.assign(require('import-fresh')('./data/database.json')).write();
 
   if (req.method === 'POST' && req.path === '/upload') {
     const cardId = req.query.card;
