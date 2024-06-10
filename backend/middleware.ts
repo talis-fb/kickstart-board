@@ -26,7 +26,7 @@ module.exports = (req, res, next) => {
           .find({ id: Number(query.card) })
           .value();
 
-        currentCard.image = `${cardId}_${filename}`;
+        currentCard.file = `${cardId}_${filename}`;
 
         db.get('cards')
           .find({ id: Number(query.card) })

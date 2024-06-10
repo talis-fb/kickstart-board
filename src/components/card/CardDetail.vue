@@ -130,7 +130,7 @@
               <Attachment />
             </div>
             <h1 class="inline-block mb-4 text-lg font-semibold text-black">
-              Image
+              File
             </h1>
           </div>
           <div class="lg:ml-9">
@@ -143,7 +143,7 @@
                 <img :src="'/api/data/' + activeCard.file">
               </div>
               <div class="col-span-4 font-bold">
-                {{ activeCard.file.replace(`/api/data/${activeCard.id}_`, '') }}
+                {{ activeCard.file }}
                 <a
                   class="block font-normal underline cursor-pointer"
                   data-cy="image-delete"
