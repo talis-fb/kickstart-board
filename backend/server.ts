@@ -10,6 +10,8 @@ startServer()
 
 const app = express();
 
+app.use('/api/data', express.static(path.join(__dirname, 'data','uploaded')));
+
 app.use(
   '/api',
   createProxyMiddleware({
@@ -20,6 +22,7 @@ app.use(
     },
   }),
 );
+
 
 app.use(express.static(path.join(__dirname, '..','dist')));
 
