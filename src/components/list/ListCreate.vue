@@ -60,7 +60,7 @@ defineProps({
   },
 });
 
-const { board, createListInput, lists } = storeToRefs(useStore());
+const { board, lists } = storeToRefs(useStore());
 const { createList } = useStore();
 const listTitle = ref('');
 const listCreate = ref();
@@ -78,6 +78,7 @@ const addList = () => {
   listTitle.value = '';
 };
 
+const createListInput = ref(false);
 const enableInput = () => {
   createListInput.value = true;
   nextTick(() => {
