@@ -44,8 +44,8 @@ export const startServer = (): PluginOption => {
 
   app.use(router);
 
-  console.log("JSON-SERVER setup up")
-  app.listen(SERVER, () => console.log("JSON-SERVER: Listening on " + SERVER));
+  console.log('JSON-SERVER setup up')
+  app.listen(SERVER, () => console.log('JSON-SERVER: Listening on ' + SERVER));
   return null;
 }
 

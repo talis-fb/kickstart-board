@@ -114,13 +114,13 @@
           <div class="flex lg:ml-9">
             <MdEditor
               v-model="activeCard.description"
-              :editorId="mdEditorId" 
+              :editor-id="mdEditorId"
               language="en-US"
               code-theme="atom"
               class="p-3 w-full h-25 max-h-50"
+              :scroll-element="scrollElement"
               @on-save="saveMdEditor"
               @on-blur="saveMdEditor"
-              :scroll-element="scrollElement"
             />
           </div>
         </div>
@@ -271,7 +271,7 @@ const mdEditorId = ref('mdEditor');
 const scrollElement = document.documentElement;
 function saveMdEditor() {
   if (activeCard.value) {
-    patchCard(activeCard.value, { description: activeCard.value.description })
+    patchCard(activeCard.value, { description: activeCard.value.description });
   }
 }
 </script>

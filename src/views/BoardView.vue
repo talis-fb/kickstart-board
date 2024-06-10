@@ -2,7 +2,7 @@
   <div class="bg-blue6">
     <CardDetail v-if="modalEditCard.show" />
     <div
-      class="grid"
+      class="grid relative"
       :class="state.loadingError.show ? 'bg-white' : 'bg-blue6'"
     >
       <!-- LOADING -->
@@ -29,20 +29,29 @@
         <BoardHeader
           v-model:board-name="state.board.name"
           v-model:search-cards="searchCards"
+          class="py-2.5 w-full"
           :board="state.board"
           :starred="state.board.starred"
           :on-change-board-name="() => state.patchBoard(state.board, { name: state.board.name })"
-          class="py-2.5"
           @clickOnStar="state.patchBoard(state.board, { starred: !state.board.starred })"
         />
 
-        <Board class="inline-block" />
+        <div class="">
+          <Board class="inline-block" />
 
-        <div class="inline-block align-top">
-          <ListCreate
-            :board="state.board.id"
-            class="bg-gray2 rounded-sm shadow-md cursor-pointer"
-          />
+          <div class="inline-block align-top">
+            <ListCreate
+              :board="state.board.id"
+              :class="!isAnchorListCreateElementVisible && 'absolute top-2 right-2'"
+              class="bg-gray2 rounded-sm shadow-md transform translate-x-0 translate-y-0 cursor-pointer"
+            />
+            <div
+              ref="anchorPositionListCreateElementRef"
+              class="w-24 opacity-0 pointer-events-none"
+            >
+              .
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -53,6 +62,7 @@
 import { onMounted, ref, watch } from 'vue';
 import { useRoute } from 'vue-router';
 import { storeToRefs } from 'pinia';
+import { useElementVisibility } from '@vueuse/core';
 import { useStore } from '@/stores/store';
 import CardDetail from '@/components/card/CardDetail.vue';
 import BoardLoading from '@/components/board/BoardLoading.vue';
@@ -66,13 +76,17 @@ const route = useRoute();
 const state = useStore();
 const boardId = Number(route.params.board);
 
+onMounted(() => {
+  state.getBoardData(boardId);
+});
+
 const searchCards = ref('');
-watch(searchCards, (value) => {
-  if (value) {
+watch(searchCards, (newValue) => {
+  if (newValue) {
     state.filtersCards = [
       {
         fieldFilter: 'name',
-        value: searchCards.value,
+        value: newValue,
       },
     ];
   }
@@ -81,9 +95,8 @@ watch(searchCards, (value) => {
   }
 });
 
-onMounted(() => {
-  state.getBoardData(boardId);
-});
+const anchorPositionListCreateElementRef = ref(null);
+const isAnchorListCreateElementVisible = useElementVisibility(anchorPositionListCreateElementRef);
 </script>
 
 <style lang="postcss" scoped>
