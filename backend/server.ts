@@ -1,25 +1,10 @@
-// import * as express from 'express';
-// import { createProxyMiddleware, Filter, Options, RequestHandler } from 'http-proxy-middleware';
-// import {startServer } from './index'
-
-// startServer()
-
-// const app = express();
-
-// app.use(
-//   '/api',
-//   createProxyMiddleware({
-//     rewe
-//   }),
-// );
-
-
-// app.listen(3000);
-
 const express = require('express');
 const { createProxyMiddleware } = require('http-proxy-middleware');
-// const {startServer } = require('./index')
+const path = require('path');
+import constants from '../constants';
 import {startServer }  from './index'
+
+const { SERVER, PROXY_SERVER } = constants
 
 startServer()
 
@@ -28,9 +13,18 @@ const app = express();
 app.use(
   '/api',
   createProxyMiddleware({
-    target: 'http://localhost:3001',
-    // changeOrigin: true,
+    target: `http://localhost:${SERVER}`,
+    changeOrigin: true,
+    pathRewrite: {
+      '^/api': '',
+    },
   }),
 );
 
-app.listen(3000, () => console.log("Listen on 3000"));
+app.use(express.static(path.join(__dirname, '..','dist')));
+
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '..', 'dist', 'index.html'));
+});
+
+app.listen(PROXY_SERVER, () => console.log(`Proxy - Listen on ${PROXY_SERVER}`));

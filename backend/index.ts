@@ -23,8 +23,8 @@ export const startServer = (): PluginOption => {
   const router = jsonServer.router('./backend/data/database.json');
 
   app.db = router.db;
-  app.use(history());
-  // app.use(jsonServer.defaults({ static: '.' }));
+  // app.use(history());
+  app.use(jsonServer.defaults({ static: '.' }));
   app.use(nocache());
   app.use(busboy());
   app.use(jsonServer.bodyParser);
@@ -45,7 +45,6 @@ export const startServer = (): PluginOption => {
   app.use(router);
 
   console.log("JSON-SERVER setup up")
-  console.log(router.db.get())
   app.listen(SERVER, () => console.log("JSON-SERVER: Listening on " + SERVER));
   return null;
 }
@@ -53,5 +52,3 @@ export const startServer = (): PluginOption => {
 export const createServer = (): PluginOption => {
   return startServer()
 }
-
-createServer()
