@@ -77,6 +77,7 @@ const state = useStore();
 const boardId = Number(route.params.board);
 
 onMounted(() => {
+  state.filtersCards = [];
   state.getBoardData(boardId);
 });
 
