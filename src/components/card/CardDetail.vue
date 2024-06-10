@@ -60,7 +60,7 @@
               </h2>
               <div
                 v-if="showDate"
-                class="absolute"
+                class="absolute z-50"
               >
                 <Datepicker
                   v-model="date"
