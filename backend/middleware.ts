@@ -10,7 +10,6 @@ module.exports = (req, res, next) => {
 
   // prevent from caching database.json file
   // this is different from nocache(), which prevents 304 status codes
-  const file = require('import-fresh')('./data/database.json');
   db.assign(require('import-fresh')('./data/database.json')).write();
 
   if (req.method === 'POST' && req.path === '/upload') {
