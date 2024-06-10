@@ -30,7 +30,6 @@ import { oauthSignup } from './user/actions/oauthSignup';
 import Board from '@/typings/board';
 import FilterCard from '@/typings/filter-card';
 import List from '@/typings/list';
-import Card from '@/typings/card';
 
 export const useStore = defineStore({
   id: 'store',

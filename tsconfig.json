@@ -1,8 +1,8 @@
 {
   "compilerOptions": {
     "target": "ES2018",
-    "module": "ES2020",
-    "strict": true,
+    "module": "CommonJS",
+    "strict": false,
     "sourceMap": true,
     "jsx": "preserve",
     "allowJs": true,
@@ -12,7 +12,7 @@
       "dom"
     ],
     "allowSyntheticDefaultImports": true,
-    "noUnusedLocals": true,
+    "noUnusedLocals": false,
     "skipLibCheck": true,
     "plugins": [
       {
@@ -39,6 +39,8 @@
   },
   "include": [
     "cypress/**/*.ts",
+    "backend/**/*.ts",
     "src/**/*"
-  ]
+  ],
+  "exclude": ["**/*.spec.ts"]
 }

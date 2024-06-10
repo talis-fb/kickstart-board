@@ -10,7 +10,6 @@ import { createCard } from './actions/createCard';
 import { createList } from './actions/createList';
 import { updateListsOrder } from './actions/sortLists';
 import { deleteBoard } from './actions/deleteBoard';
-import { showModalCardEdit } from './actions/showModalCardEdit';
 import { resetBoards } from './actions/resetBoards';
 import { resetLists } from './actions/resetLists';
 import { resetCards } from './actions/resetCards';

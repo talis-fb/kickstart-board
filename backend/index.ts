@@ -23,7 +23,7 @@ export const startServer = (): PluginOption => {
   const router = jsonServer.router('./backend/data/database.json');
 
   app.db = router.db;
-  app.use(history());
+  // app.use(history());
   app.use(jsonServer.defaults({ static: '.' }));
   app.use(nocache());
   app.use(busboy());
@@ -44,42 +44,8 @@ export const startServer = (): PluginOption => {
 
   app.use(router);
 
-  const server = app.listen(SERVER);
-  // const io = require('socket.io')(server);
-
-  // io.on('connection', (socket) => {
-  //   socket.on('boardCreated', (message) => {
-  //     io.emit('boardCreated', message);
-  //   });
-  //   socket.on('boardsState', (message) => {
-  //     io.emit('boardsState', message);
-  //   });
-  //   socket.on('boardDeleted', (id) => {
-  //     io.emit('boardDeleted', id);
-  //   });
-  //   socket.on('boardUpdate', (id, message) => {
-  //     io.emit('boardUpdate', id, message);
-  //   });
-  //   socket.on('listCreated', (boardId, message) => {
-  //     io.emit('listCreated', boardId, message);
-  //   });
-  //   socket.on('listUpdated', (id, message) => {
-  //     io.emit('listUpdated', id, message);
-  //   });
-  //   socket.on('listDeleted', (id) => {
-  //     io.emit('listDeleted', id);
-  //   });
-  //   socket.on('cardCreated', (listId, message) => {
-  //     io.emit('cardCreated', listId, message);
-  //   });
-  //   socket.on('cardUpdated', (id, message) => {
-  //     io.emit('cardUpdated', id, message);
-  //   });
-  //   socket.on('cardDeleted', (id, message) => {
-  //     io.emit('cardDeleted', id, message);
-  //   });
-
-  // });
+  console.log("JSON-SERVER setup up")
+  app.listen(SERVER, () => console.log("JSON-SERVER: Listening on " + SERVER));
   return null;
 }
 
