@@ -1,40 +1,46 @@
 <template>
-  <div class="flex gap-2 justify-start ml-2">
-    <div class="relative py-1.5 h-8">
-      <div class="invisible px-3">
-        {{ inputBoardName }}
+  <div class="flex flex-wrap gap-2 justify-start ml-2">
+    <div class="flex gap-2">
+      <div class="relative py-1.5 h-8">
+        <div class="invisible px-3">
+          {{ inputBoardName }}
+        </div>
+
+        <input
+          v-model="inputBoardName"
+          class="text-white bg-white bg-opacity-20 hover:bg-opacity-30 board-title"
+          data-cy="board-title"
+          autocomplete="off"
+          name="board-title"
+          @focus="selectInput($event)"
+          @change="onChangeBoardName"
+          @keyup.enter="blurInput($event)"
+          @keyup.esc="blurInput($event)"
+        >
+      </div>
+      <div
+        class="relative inline-grid w-8 h-8 bg-white bg-opacity-20 hover:bg-opacity-30 rounded-sm cursor-pointer"
+        :class="[starred ? 'fill-current text-yellow-300' : 'stroke-current text-white']"
+        data-cy="star"
+        @click="$emit('clickOnStar')"
+      >
+        <div class="inline-grid w-8 h-8">
+          <StarIcon class="self-center m-2" />
+        </div>
       </div>
 
-      <input
-        v-model="inputBoardName"
-        class="text-white bg-white bg-opacity-20 hover:bg-opacity-30 board-title"
-        data-cy="board-title"
-        autocomplete="off"
-        name="board-title"
-        @focus="selectInput($event)"
-        @change="onChangeBoardName"
-        @keyup.enter="blurInput($event)"
-        @keyup.esc="blurInput($event)"
-      >
-    </div>
-    <div
-      class="relative self-center w-8 h-8 bg-white bg-opacity-20 hover:bg-opacity-30 rounded-sm cursor-pointer"
-      :class="[starred ? 'fill-current text-yellow-300' : 'stroke-current text-white']"
-      data-cy="star"
-      @click="$emit('clickOnStar')"
-    >
-      <StarIcon class="place-self-center m-2" />
+      <BoardOptions
+        :board="board"
+        class="inline-grid relative w-8 h-8"
+      />
     </div>
 
-    <BoardOptions
-      :board="board"
-      class="inline-grid relative w-8 h-8"
-    />
-
-    <SearchCards
-      v-model:input="inputSearchCards"
-      class="inline-grid relative w-60 h-8"
-    />
+    <div class="w-full md:w-fit">
+      <SearchCards
+        v-model:input="inputSearchCards"
+        class="inline-grid relative w-60 h-8"
+      />
+    </div>
   </div>
 </template>
 
