@@ -234,7 +234,7 @@ import { useRouter } from 'vue-router';
 const router = useRouter();
 const { showNotification, closeModalCardEdit, patchCard, deleteCard } = useStore();
 const { lists, activeCard } = storeToRefs(useStore());
-const cardListName = lists.value.find(list => list.id === activeCard.value.listId)!['name'];
+const cardListName = lists.value.find((list) => list.id === activeCard.value.listId)!['name'];
 
 const showDate = ref(false);
 const cardNameInputActive = ref(false);
